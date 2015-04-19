@@ -35,6 +35,6 @@ while(true){
 			 requestContentType: JSON ) { resp ->
 		logger.info ("status-poster: posted photo")
 	}
-	
-    sleep(60000)
+
+    sleep(15000)
 }
