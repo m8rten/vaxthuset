@@ -1,0 +1,1 @@
+scp -r . pi@10.0.1.8:~/vaxthuset
