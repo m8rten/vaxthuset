@@ -1,10 +1,10 @@
 #!/bin/sh
-groovy foto/foto.groovy
+cd foto; groovy foto/foto.groovy; cd ..
 wait
-groovy temperatur/temperatur.groovy
+cd temperatur; groovy temperatur/temperatur.groovy; cd ..
 wait
-groovy ventilation/ventilation.groovy
+cd ventilation; groovy ventilation/ventilation.groovy; cd ..
 wait
-groovy status-poster/status-poster.groovy
+cd status-poster; groovy status-poster/status-poster.groovy; cd ..
 wait
 echo "done with update cykel"
