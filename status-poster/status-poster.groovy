@@ -15,7 +15,7 @@ while(true){
 	/*
 	 * Post current sensor status
 	 */
-	def http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/status-test?apiKey=$mongolabApiKey")
+	def http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/status?apiKey=$mongolabApiKey")
 	def currentDate = new Date()
 	http.post(body: [temperature: new File('../temperatur/status.txt').text.toDouble(),
 	 				ventilation: new File('../ventilation/status.txt').text.toInteger(),
@@ -29,7 +29,7 @@ while(true){
 	/*
 	 * Update latest photo
 	 */
-	http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/bilder-test?apiKey=$mongolabApiKey")
+	http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/bilder?apiKey=$mongolabApiKey")
 	http.post(body: [_id:"foto",
 					 base64: new File('../foto/status.txt').text],
 			 requestContentType: JSON ) { resp ->
