@@ -1,5 +1,5 @@
 #!/bin/sh
-cd foto; groovy foto/foto.groovy; cd ..
+cd foto; groovy foto.groovy; cd ..
 wait
 cd temperatur; groovy temperatur.groovy; cd ..
 wait
