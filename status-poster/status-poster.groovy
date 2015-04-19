@@ -7,28 +7,34 @@ Logger logger = Logger.getLogger("")
 
 logger.info ("status-poster: enter")
 
-def mongolabApiKey = System.getenv('MONGOLAB_API_KEY') 
 
-/*
- * Post current sensor status
- */
-def http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/status-test?apiKey=$mongolabApiKey")
-def currentDate = new Date()
-http.post(body: [temperature: new File('../temperatur/status.txt').text.toDouble(),
- 				ventilation: new File('../ventilation/status.txt').text.toInteger(),
-				date: currentDate.format("MM/dd/yyyy'T'HH:mm:00.000'Z'"),
-				hour: currentDate.getHours(),
-				minute: currentDate.getMinutes()],
-		 requestContentType: JSON ) { resp ->
-	logger.info ("status-poster: posted sensor data")
-}
+while(true){
+    
+    def mongolabApiKey = System.getenv('MONGOLAB_API_KEY') 
 
-/*
- * Update latest photo
- */
-http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/bilder-test?apiKey=$mongolabApiKey")
-http.post(body: [_id:"foto",
-				 base64: new File('../foto/status.txt').text],
-		 requestContentType: JSON ) { resp ->
-	logger.info ("status-poster: posted photo")
+	/*
+	 * Post current sensor status
+	 */
+	def http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/status-test?apiKey=$mongolabApiKey")
+	def currentDate = new Date()
+	http.post(body: [temperature: new File('../temperatur/status.txt').text.toDouble(),
+	 				ventilation: new File('../ventilation/status.txt').text.toInteger(),
+					date: currentDate.format("MM/dd/yyyy'T'HH:mm:00.000'Z'"),
+					hour: currentDate.getHours(),
+					minute: currentDate.getMinutes()],
+			 requestContentType: JSON ) { resp ->
+		logger.info ("status-poster: posted sensor data")
+	}
+
+	/*
+	 * Update latest photo
+	 */
+	http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/bilder-test?apiKey=$mongolabApiKey")
+	http.post(body: [_id:"foto",
+					 base64: new File('../foto/status.txt').text],
+			 requestContentType: JSON ) { resp ->
+		logger.info ("status-poster: posted photo")
+	}
+	
+    sleep(60000)
 }
