@@ -1,6 +1,11 @@
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7' )
 import groovyx.net.http.HTTPBuilder
 import static groovyx.net.http.ContentType.JSON
+import java.util.logging.Logger
+
+Logger logger = Logger.getLogger("")
+
+logger.info ("status-poster: enter")
 
 def mongolabApiKey = System.getenv('MONGOLAB_API_KEY') 
 
@@ -15,6 +20,7 @@ http.post(body: [temperature: new File('../temperatur/status.txt').text.toDouble
 				hour: currentDate.getHours(),
 				minute: currentDate.getMinutes()],
 		 requestContentType: JSON ) { resp ->
+	logger.info ("status-poster: posted sensor data")
 }
 
 /*
@@ -24,4 +30,5 @@ http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/colle
 http.post(body: [_id:"foto",
 				 base64: new File('../foto/status.txt').text],
 		 requestContentType: JSON ) { resp ->
+	logger.info ("status-poster: posted photo")
 }
