@@ -1,1 +1,1 @@
-scp -r . pi@10.0.1.8:~/vaxthuset
+scp -r foto temperatur ventilation status-poster *.sh pi@10.0.1.8:~/vaxthuset
