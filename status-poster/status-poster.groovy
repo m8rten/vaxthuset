@@ -36,5 +36,5 @@ while(true){
 		logger.info ("status-poster: posted photo")
 	}
 
-    sleep(15000)
+    sleep(1000)
 }
