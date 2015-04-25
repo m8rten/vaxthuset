@@ -1,11 +1,11 @@
 import java.util.logging.Logger
 Logger logger = Logger.getLogger("")
 logger.info ("foto: enter")
-//def process = "raspistill -o status.jpg".execute()
-//process.text
+def process = "raspistill -o status.jpg".execute()
+process.text
 logger.info ("foto: taken")
 
-def process = "convert status.jpg -resize 640x640 status-r.jpg".execute()
+process = "convert status.jpg -resize 640x640 status-r.jpg".execute()
 process.text
 logger.info ("foto: resized")
 
