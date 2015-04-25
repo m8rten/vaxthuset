@@ -1,4 +1,4 @@
-* * * * * cd /home/pi/vaxthuset/foto; /home/pi/.gvm/groovy/current/bin/groovy foto.groovy
-* * * * * cd /home/pi/vaxthuset/temperatur; /home/pi/.gvm/groovy/current/bin/groovy temperatur.groovy
-* * * * * cd /home/pi/vaxthuset/ventilation; /home/pi/.gvm/groovy/current/bin/groovy ventilation.groovy
-#* * * * * cd /home/pi/vaxthuset/status-poster; /home/pi/.gvm/groovy/current/bin/groovy status-poster.groovy
+* * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/foto; /home/pi/.gvm/groovy/current/bin/groovy foto.groovy >> /var/log/vaxthuset.log 2>&1'
+* * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/temperatur; /home/pi/.gvm/groovy/current/bin/groovy temperatur.groovy >> /var/log/vaxthuset.log 2>&1'
+* * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/ventilation; /home/pi/.gvm/groovy/current/bin/groovy ventilation.groovy >> /var/log/vaxthuset.log 2>&1'
+* * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/status-poster; /home/pi/.gvm/groovy/current/bin/groovy status-poster.groovy >> /var/log/vaxthuset.log 2>&1'
