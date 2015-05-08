@@ -16,7 +16,7 @@ def http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/c
 def currentDate = new Date()
 http.post(body: [temperature: new File('../temperatur/status.txt').text.toDouble(),
  				ventilation: new File('../ventilation/status.txt').text.toInteger(),
-				date: currentDate.format("MM/dd/yyyy'T'HH:mm:00.000'Z'"),
+				date: currentDate.format("yyyy-MM-dd'T'HH:mm:00'Z'"),
 				hour: currentDate.getHours(),
 				minute: currentDate.getMinutes()],
 		 requestContentType: JSON ) { resp ->
@@ -28,7 +28,8 @@ http.post(body: [temperature: new File('../temperatur/status.txt').text.toDouble
  */
 http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/bilder?apiKey=$mongolabApiKey")
 http.post(body: [_id:"foto",
-				 base64: new File('../foto/status.txt').text],
+				 date: currentDate.format("yyyy-MM-dd'T'HH:mm:00'Z'"),
+				 base64: new File('../foto/foto.txt').text],
 		 requestContentType: JSON ) { resp ->
 	logger.info ("status-poster: posted photo")
 }

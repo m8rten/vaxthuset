@@ -1,0 +1,2 @@
+echo "4=0.19" > /dev/pi-blaster #av
+echo "4=0.005" > /dev/pi-blaster #på

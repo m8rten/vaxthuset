@@ -2,3 +2,4 @@
 * * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/temperatur; /home/pi/.gvm/groovy/current/bin/groovy temperatur.groovy >> /var/log/vaxthuset.log 2>&1'
 * * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/ventilation; /home/pi/.gvm/groovy/current/bin/groovy ventilation.groovy >> /var/log/vaxthuset.log 2>&1'
 * * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/status-poster; /home/pi/.gvm/groovy/current/bin/groovy status-poster.groovy >> /var/log/vaxthuset.log 2>&1'
+0 * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/gif; /home/pi/.gvm/groovy/current/bin/groovy gif.groovy >> /var/log/vaxthuset.log 2>&1'

@@ -1,18 +1,14 @@
 import java.util.logging.Logger
 Logger logger = Logger.getLogger("")
 logger.info ("foto: enter")
-def process = "raspistill -o status.jpg".execute()
-process.text
-logger.info ("foto: taken")
-
-process = "convert status.jpg -resize 640x640 status-r.jpg".execute()
-process.text
+def process = "raspistill -n -o foto.jpg".execute()
+process.waitForOrKill(100000)
+process = "convert foto.jpg -resize 900x300 foto-r.jpg".execute()
+process.waitForOrKill(100000)
 logger.info ("foto: resized")
-
-process = "convert status-r.jpg -crop -160 status-c.jpg".execute()
-process.text
+process = "convert foto-r.jpg -crop 300 foto-c.jpg".execute()
+process.waitForOrKill(100000)
 logger.info ("foto: croped")
-
-new File('status.txt').text = new File("status-c.jpg").bytes.encodeBase64().toString()
+new File('foto.txt').text = new File("foto-c-0.jpg").bytes.encodeBase64().toString()
 logger.info ("foto: decoded")
 logger.info ("foto: exit")
