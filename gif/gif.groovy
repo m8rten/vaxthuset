@@ -14,10 +14,11 @@ process.waitForOrKill(100000)
 logger.info ("gif: croped")
 
 def nextFileNr = new File("singels").listFiles().size() + 1
+def nextFileNrZeroPad = sprintf('%06d', nextFileNr)
 
-process = "cp gif-c-0.jpg singels/gif${nextFileNr}.jpg".execute()
+process = "cp gif-c-0.jpg singels/gif${nextFileNrZeroPad}.jpg".execute()
 process.waitForOrKill(100000)
-logger.info ("gif: copied to singels/gif${nextFileNr}.jpg")
+logger.info ("gif: copied to singels/gif${nextFileNrZeroPad}.jpg")
 
 process = "convert -delay 100 -loop 0 singels/gif*.jpg animation.gif".execute()
 process.waitForOrKill(100000)

@@ -1,7 +1,7 @@
 import java.util.logging.Logger
 Logger logger = Logger.getLogger("")
 logger.info ("foto: enter")
-def process = "raspistill -n -o foto.jpg".execute()
+def process = "raspistill -rot 270 -n -o foto.jpg".execute()
 process.waitForOrKill(100000)
 process = "convert foto.jpg -resize 900x300 foto-r.jpg".execute()
 process.waitForOrKill(100000)
