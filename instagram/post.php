@@ -21,6 +21,11 @@ function SendRequest($url, $post, $post_data, $user_agent, $cookies) {
     $http = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
+    echo "    HTTP    ";
+    echo $http;
+    echo "    RESPONSE    ";
+    echo $response;
+
    return array($http, $response);
 }
 
@@ -64,14 +69,12 @@ function GetPostData($filename) {
 
 
 // Set the username and password of the account that you wish to post a photo to
-$username = 'greenhouse_lulea';
+$username = 'tomatfabriken';
 $password = getenv('INSTAGRAM_PASSWORD');
 
 // Set the path to the file that you wish to post.
 // This must be jpeg format and it must be a perfect square
-$filename = 'bild.jpg';
-
-//$temp = file_get_contents('../temperature/status.txt');
+$filename = 'instagram.jpg';
 
 // Set the caption for the photos
 $caption = "";
