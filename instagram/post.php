@@ -67,6 +67,8 @@ function GetPostData($filename) {
     }
 }
 
+// Instagram 4.2.1 Android (10/1.4.3; 240; 480x320; samsung; GT-I9220; GT-I9220; smdkc210; en_US)
+// 65162e1c-a294-45a3-b15b-6caeecf6aca9
 
 // Set the username and password of the account that you wish to post a photo to
 $username = 'tomatfabriken';
@@ -80,10 +82,12 @@ $filename = 'instagram.jpg';
 $caption = "";
 
 // Define the user agent
-$agent = GenerateUserAgent();
+$agent = "Instagram 4.2.1 Android (10/1.4.3; 240; 480x320; samsung; GT-I9220; GT-I9220; smdkc210; en_US)";
+//GenerateUserAgent();
 
 // Define the GuID
-$guid = GenerateGuid();
+$guid = "65162e1c-a294-45a3-b15b-6caeecf6aca9"
+//GenerateGuid();
 
 // Set the devide ID
 $device_id = "android-".$guid;
