@@ -2,22 +2,24 @@
 
 current_temp=`cat ../temperatur/status.txt`
 door_status=`cat status.txt`
-open_temp=30
-close_temp=29
+open_temp=22
+close_temp=23
 
 if [ 1 -eq "$(echo "${current_temp} < ${close_temp}" | bc)" ] && [ 1 -eq $door_status ];
+#CLOSE DOOR
 then
-    echo "17=0.06" > /dev/pi-blaster
+    echo "closed door"
+    echo "17=0.26" > /dev/pi-blaster
     sleep  4
     echo "17=0" > /dev/pi-blaster
-    echo "close door"
     echo "0" > status.txt
 elif [ 1 -eq "$(echo "${current_temp} > ${open_temp}" | bc )" ] && [ 0 -eq $door_status ]
+#OPEN DOOR
 then
-    echo "17=0.158" > /dev/pi-blaster
+    echo "open door"
+    echo "17=0.07" > /dev/pi-blaster
     sleep 4
     echo "17=0" > /dev/pi-blaster
-    echo "open door"
     echo "1" > status.txt
 fi
 
