@@ -4,7 +4,6 @@ current_temp=`cat ../temperatur/status.txt`
 door_status=`cat status.txt`
 open_temp=30
 close_temp=24
-
 if [ 1 -eq "$(echo "${current_temp} < ${close_temp}" | bc)" ] && [ 1 -eq $door_status ];
 #CLOSE DOOR
 then

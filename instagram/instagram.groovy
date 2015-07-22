@@ -14,11 +14,21 @@ process.waitForOrKill(100000)
 logger.info ("instagram: stripped")
 
 process = "php post.php".execute()
+<<<<<<< HEAD
 def text = process.text
 logger.info ("instagram: posted")
 logger.info ("text: " + text)
+=======
+process.waitForOrKill(100000)
+logger.info ("instagram: posted")
+
+>>>>>>> b9a068b74843072e99799fd18d19794a089eff90
 process = "cp cookie.txt ../../bkp/".execute()
 process.waitForOrKill(100000)
 logger.info ("instagram: copy cookie")
 
+<<<<<<< HEAD
 logger.info ("instagram: exit")
+=======
+logger.info ("instagram: exit")
+>>>>>>> b9a068b74843072e99799fd18d19794a089eff90

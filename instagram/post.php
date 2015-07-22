@@ -67,7 +67,6 @@ function GetPostData($filename) {
     }
 }
 
-
 // Set the username and password of the account that you wish to post a photo to
 $username = 'tomatfabriken';
 $password = getenv('INSTAGRAM_PASSWORD');
