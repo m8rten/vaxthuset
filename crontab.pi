@@ -1,3 +1,4 @@
+0 10 * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/bevattning; /bin/bash ./bevattning_10m.sh >> /var/log/vaxthuset.log 2>&1'
 * * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/foto; /bin/bash ./foto.sh >> /var/log/vaxthuset.log 2>&1'
 * * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/temperatur; /home/pi/.gvm/groovy/current/bin/groovy temperatur.groovy >> /var/log/vaxthuset.log 2>&1'
 * * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/ventilation; /bin/bash ./ventilation.sh >> /var/log/vaxthuset.log 2>&1'
