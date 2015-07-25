@@ -1,37 +1,42 @@
+@GrabResolver(name="netty snapshots", root="http://clinker.netty.io/nexus/content/repositories/snapshots")
+@GrabResolver(name="OJO", root="https://oss.jfrog.org/artifactory/repo")
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7' )
+@Grab("io.ratpack:ratpack-groovy:0.9.13")
+@Grab("io.ratpack:ratpack-jackson:0.9.13")   
+import static ratpack.groovy.Groovy.ratpack
+import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
+import groovy.time.TimeCategory
+import ratpack.jackson.JacksonModule          
+import static ratpack.jackson.Jackson.jsonNode
 import groovyx.net.http.HTTPBuilder
 import static groovyx.net.http.ContentType.JSON
-import java.util.logging.Logger
-
-Logger logger = Logger.getLogger("")
-
-logger.info ("status-poster: enter")
-    
-def mongolabApiKey = System.getenv('MONGOLAB_API_KEY') 
 
 /*
- * Post current sensor status
+ * Loads configuration
  */
-def http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/status?apiKey=$mongolabApiKey")
-def currentDate = new Date()
-http.post(body: [temperature: new File('../temperatur/status.txt').text.toDouble(),
- 				ventilation: new File('../ventilation/status.txt').text.toInteger(),
-				date: currentDate.format("yyyy-MM-dd'T'HH:mm:00'Z'"),
-				hour: currentDate.getHours(),
-				minute: currentDate.getMinutes()],
-		 requestContentType: JSON ) { resp ->
-	logger.info ("status-poster: posted sensor data")
-}
+def vaxthusetAdminKey = System.getenv('VAXTHUSET_ADMIN_KEY') 
+
 
 /*
- * Update latest photo
+ * Defines handlers
  */
-http = new HTTPBuilder("https://api.mongolab.com/api/1/databases/vaxthuset/collections/bilder?apiKey=$mongolabApiKey")
-http.post(body: [_id:"foto",
-				 date: currentDate.format("yyyy-MM-dd'T'HH:mm:00'Z'"),
-				 base64: new File('../foto/foto.txt').text],
-		 requestContentType: JSON ) { resp ->
-	logger.info ("status-poster: posted photo")
-}
+ratpack {
+    bindings {                                  
+        add new JacksonModule()                   
+    } 
+    handlers {
 
-logger.info ("status-poster: exit")
+        post("api/controller") {                             
+            def controller = parse jsonNode()
+	    println "CONTROLLER: recived request" 
+            if (controller.key.toString() == "\"$vaxthusetAdminKey\"") {
+		println "CONTROLLER: do watering for ${controller.time.toString()} sec"
+                "/bin/bash /home/pi/vaxthuset/bevattning/bevattning.sh ${controller.time.toString()}".execute() 
+		render "success"
+            } else {
+                render "fail"
+            }
+        }   
+    }
+}
