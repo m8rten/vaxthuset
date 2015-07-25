@@ -1,8 +1,8 @@
-0 10 * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/bevattning; /bin/bash ./bevattning_10m.sh >> /var/log/vaxthuset.log 2>&1'
+0 8 * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/bevattning; /bin/bash ./bevattning_10m.sh >> /var/log/vaxthuset.log 2>&1'
 * * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/foto; /bin/bash ./foto.sh >> /var/log/vaxthuset.log 2>&1'
 * * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/temperatur; /home/pi/.gvm/groovy/current/bin/groovy temperatur.groovy >> /var/log/vaxthuset.log 2>&1'
 * * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/ventilation; /bin/bash ./ventilation.sh >> /var/log/vaxthuset.log 2>&1'
 * * * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/status-poster; /home/pi/.gvm/groovy/current/bin/groovy status-poster.groovy >> /var/log/vaxthuset.log 2>&1'
 0 13 * * * /bin/bash -l -c 'cd /home/pi/vaxthuset/gif; /home/pi/.gvm/groovy/current/bin/groovy gif.groovy >> /var/log/vaxthuset.log 2>&1'
-30 13 * * 0,3 /bin/bash -l -c 'cd /home/pi/vaxthuset/instagram; /home/pi/.gvm/groovy/current/bin/groovy instagram.groovy >> /var/log/vaxthuset.log 2>&1'
+30 16 * * 0,3 /bin/bash -l -c 'cd /home/pi/vaxthuset/instagram; /home/pi/.gvm/groovy/current/bin/groovy instagram.groovy >> /var/log/vaxthuset.log 2>&1'
 
