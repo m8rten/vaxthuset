@@ -20,7 +20,7 @@ process = "cp gif-c-0.jpg singels/gif${nextFileNrZeroPad}.jpg".execute()
 process.waitForOrKill(100000)
 logger.info ("gif: copied to singels/gif${nextFileNrZeroPad}.jpg")
 
-process = "convert -delay 100 -loop 0 singels/gif*.jpg animation.gif".execute()
+process = "convert -delay 50 -loop 0 singels/gif*.jpg animation.gif".execute()
 process.waitForOrKill(100000)
 logger.info ("gif: created animation")
 
